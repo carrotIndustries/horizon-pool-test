@@ -1,0 +1,17 @@
+name: Checks
+
+on:
+  pull_request_target:
+    branches: [ master ]
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+    - name: print ref
+      run: echo ${{ github.base_ref }}
+    - name: Comment PR
+      uses: thollander/actions-comment-pull-request@master
+      with:
+        message: 'Example of message !'
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
