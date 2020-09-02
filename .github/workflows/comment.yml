@@ -13,16 +13,16 @@ jobs:
       with:
         path: pool
     - name: fetch master
-      if: github.event_name == 'pull_request'
+      if: github.event_name == 'pull_request_target'
       run: git fetch --no-tags --prune --progress --no-recurse-submodules --depth=1 origin ${{ github.base_ref }}:${{ github.base_ref }}
       working-directory: pool
     - name: add pool
-      run: python3 scripts/ci/add_pool.py
+      run: python3 pool/scripts/ci/add_pool.py
     - name: update pool
-      run: python3 scripts/ci/update_pool.py >> comment.md
+      run: python3 pool/scripts/ci/update_pool.py >> comment.md
     - name: print diff to base
       if: github.event_name == 'pull_request'
-      run: python3 scripts/ci/diff_to_base.py ${{ github.base_ref }}  >> comment.md
+      run: python3 pool/scripts/ci/diff_to_base.py ${{ github.base_ref }}  >> comment.md
     - name: print comment
       if: ${{ always() }}
       run: cat comment.md
