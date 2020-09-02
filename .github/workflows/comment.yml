@@ -13,7 +13,6 @@ jobs:
       with:
         path: pool
     - name: fetch master
-      if: github.event_name == 'pull_request_target'
       run: git fetch --no-tags --prune --progress --no-recurse-submodules --depth=1 origin ${{ github.base_ref }}:${{ github.base_ref }}
       working-directory: pool
     - name: add pool
