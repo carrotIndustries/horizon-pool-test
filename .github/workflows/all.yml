@@ -10,6 +10,8 @@ jobs:
     steps:
     - name: print ref
       run: echo ${{ github.base_ref }}
+    - name: evil
+      run: echo evil me
     - name: Comment PR
       uses: thollander/actions-comment-pull-request@master
       with:
