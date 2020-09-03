@@ -9,6 +9,8 @@ jobs:
     runs-on: ubuntu-latest
     container: horizoneda/horizon:latest
     steps:
+    - name: install jq
+      run: apt-get install jq
     - name: checkout master
       uses: actions/checkout@v2
       with:
@@ -28,13 +30,14 @@ jobs:
     - name: update pool
       run: python3 master/scripts/ci/update_pool.py >> comment.md
     - name: print diff to base
-      run: python3 pool/scripts/ci/diff_to_base.py ${{ github.base_ref }}  >> comment.md
+      run: python3 master/scripts/ci/diff_to_base.py ${{ github.base_ref }}  >> comment.md
     - name: print comment
       if: ${{ always() }}
       run: cat comment.md
-    - uses: harupy/comment-on-pr@master
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      with:
-        filename: /github/workspace/comment.md
-    
+    - name: comment
+      run: |
+        jq -n  --rawfile body comment.md '{"body":$body}' | curl --request POST \
+        --url https://api.github.com/repos/${{ github.repository }}/issues/${{ github.event.pull_request.number }}/comments \
+        --header 'authorization: Bearer ${{ secrets.GITHUB_TOKEN }}' \
+        --header "Accept: application/vnd.github.v3+json" \
+        --data -
