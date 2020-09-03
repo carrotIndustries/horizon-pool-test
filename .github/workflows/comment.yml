@@ -17,6 +17,7 @@ jobs:
       uses: actions/checkout@v2
       with:
         ref: refs/pull/${{ github.event.pull_request.number }}/head
+        path: pool
     - name: ls
       run: ls pool/parts/opto/led/cree/
     - name: fetch master
