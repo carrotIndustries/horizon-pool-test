@@ -40,4 +40,4 @@ jobs:
         --url https://api.github.com/repos/${{ github.repository }}/issues/${{ github.event.pull_request.number }}/comments \
         --header 'authorization: Bearer ${{ secrets.GITHUB_TOKEN }}' \
         --header "Accept: application/vnd.github.v3+json" \
-        --data -
+        --data @-
