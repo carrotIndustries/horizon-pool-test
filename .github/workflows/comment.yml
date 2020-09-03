@@ -14,7 +14,7 @@ jobs:
       with:
         path: master
     - name: checkout pr
-    - uses: actions/checkout@v2
+      uses: actions/checkout@v2
       with:
         ref: refs/pull/${{ github.event.pull_request.number }}/head
     - name: ls
