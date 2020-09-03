@@ -10,7 +10,7 @@ jobs:
     container: horizoneda/horizon:latest
     steps:
     - name: install jq
-      run: apt-get install -y jq
+      run: apt-get install -y jq curl
     - name: checkout master
       uses: actions/checkout@v2
       with:
@@ -36,7 +36,7 @@ jobs:
       run: cat comment.md
     - name: comment
       run: |
-        jq -n  --rawfile body comment.md '{"body":$body}' | curl --request POST \
+        jq -R '{body: .}' comment.md | curl --request POST \
         --url https://api.github.com/repos/${{ github.repository }}/issues/${{ github.event.pull_request.number }}/comments \
         --header 'authorization: Bearer ${{ secrets.GITHUB_TOKEN }}' \
         --header "Accept: application/vnd.github.v3+json" \
