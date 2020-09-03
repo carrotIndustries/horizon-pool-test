@@ -9,8 +9,12 @@ jobs:
     runs-on: ubuntu-latest
     container: horizoneda/horizon:latest
     steps:
-    - name: print env
-      run: echo ${{ github }}
+    - name: print ref
+      run: echo ${{ github.ref }}
+    - name: print base ref
+      run: echo ${{ github.base_ref }}
+    - name: print head ref
+      run: echo ${{ github.head_ref }}
     - uses: actions/checkout@v2
       with:
         path: pool
