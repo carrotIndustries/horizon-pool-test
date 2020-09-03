@@ -9,6 +9,8 @@ jobs:
     runs-on: ubuntu-latest
     container: horizoneda/horizon:latest
     steps:
+    - name: print env
+      run: echo ${{ github }}
     - uses: actions/checkout@v2
       with:
         path: pool
