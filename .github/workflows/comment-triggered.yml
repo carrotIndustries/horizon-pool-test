@@ -50,3 +50,10 @@ jobs:
       - name: print comment
         if: steps.check.outputs.triggered == 'true'
         run: cat comment.md
+      - name: comment
+        run: |
+          jq -R --slurp '{body: .}' comment.md | curl --request POST \
+          --url https://api.github.com/repos/${{ github.repository }}/issues/${{ github.event.pull_request.number }}/comments \
+          --header 'authorization: Bearer ${{ secrets.GITHUB_TOKEN }}' \
+          --header "Accept: application/vnd.github.v3+json" \
+          --data @-
