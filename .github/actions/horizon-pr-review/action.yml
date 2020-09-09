@@ -8,7 +8,4 @@ inputs:
 runs:
   using: 'docker'
   image: 'docker://horizoneda/horizon-pr-review:latest'
-  args:
-    - /github/workspace/${{ inputs.pool }}
-    - '-u'
-    - '-o /github/workspace/comment.md'
+  entrypoint: horizon-pr-pr-rewview /github/workspace/${{ inputs.pool }} -u -o /github/workspace/comment.md
