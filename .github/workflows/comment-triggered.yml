@@ -33,3 +33,7 @@ jobs:
         if: steps.check.outputs.triggered == 'true'
         run: git fetch --no-tags --prune --progress --no-recurse-submodules --depth=1 origin master
         working-directory: pool
+      - name: print diff
+        if: steps.check.outputs.triggered == 'true'
+        run: git diff --no-index master
+        working-directory: pool
