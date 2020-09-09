@@ -35,5 +35,5 @@ jobs:
         working-directory: pool
       - name: print diff
         if: steps.check.outputs.triggered == 'true'
-        run: git diff --no-index master
+        run: git diff --name-only master
         working-directory: pool
