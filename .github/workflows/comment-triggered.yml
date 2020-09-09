@@ -44,7 +44,7 @@ jobs:
           path: master
       - name: create review
         if: steps.check.outputs.triggered == 'true'
-        uses: master/.github/actions/horizon-pr-review
+        uses: ./master/.github/actions/horizon-pr-review
         with:
           pool: pool
       - name: print comment
