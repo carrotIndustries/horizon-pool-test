@@ -33,6 +33,10 @@ jobs:
         if: steps.check.outputs.triggered == 'true'
         run: git fetch --no-tags --prune --progress --no-recurse-submodules --depth=1 origin master:master
         working-directory: pool
+      - name: merge master
+        if: steps.check.outputs.triggered == 'true'
+        run: git merge master
+        working-directory: pool
       - name: print diff
         if: steps.check.outputs.triggered == 'true'
         run: git diff --name-only master
