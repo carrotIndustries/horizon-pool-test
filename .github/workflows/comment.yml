@@ -18,7 +18,6 @@ jobs:
       working-directory: pool
 
     - name: create review
-      if: steps.check.outputs.triggered == 'true'
       uses: docker://horizoneda/horizon-pr-review:latest
       with:
         args: /github/workspace/pool -u -o /github/workspace/comment.md
