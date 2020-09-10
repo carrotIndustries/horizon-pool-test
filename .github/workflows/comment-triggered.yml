@@ -37,17 +37,11 @@ jobs:
         run: git diff --name-only master
         working-directory: pool
 
-      - name: checkout master
-        if: steps.check.outputs.triggered == 'true'
-        uses: actions/checkout@v2
-        with:
-          path: master
-
       - name: create review
         if: steps.check.outputs.triggered == 'true'
         uses: docker://horizoneda/horizon-pr-review:latest
         with:
-          args: /github/workspace/pool -u -o /github/workspace/comment.md
+          args: ${{ github.workspace }}/pool -u -o ${{ github.workspace }}/comment.md
 
       - name: print comment
         if: steps.check.outputs.triggered == 'true'
