@@ -41,7 +41,7 @@ jobs:
         if: steps.check.outputs.triggered == 'true'
         uses: docker://horizoneda/horizon-pr-review:latest
         with:
-          args: ${{ github.workspace }}/pool -u -o ${{ github.workspace }}/comment.md
+          args: $GITHUB_WORKSPACE/pool -u -o $GITHUB_WORKSPACE/comment.md
 
       - name: print comment
         if: steps.check.outputs.triggered == 'true'
