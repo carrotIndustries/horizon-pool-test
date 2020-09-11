@@ -17,6 +17,14 @@ jobs:
         env:
           GITHUB_TOKEN: '${{ secrets.GITHUB_TOKEN }}'
 
+      - name: setup SSH
+        if: steps.check.outputs.triggered == 'true'
+        run: |
+          ssh-keyscan github.com >> ~/.ssh/known_hosts
+          echo $SSH_PRIVKEY > ~/.ssh/id_rsa
+        env:
+          SSH_PRIVKEY: ${{ secrets.secrets.SSH_PRIVKEY }}
+
       - name: checkout media
         if: steps.check.outputs.triggered == 'true'
         uses: actions/checkout@v2
@@ -24,6 +32,17 @@ jobs:
           repository: horizon-eda/poolbot-media
           ssh-key: ${{ secrets.SSH_PRIVKEY }}
           path: media
+
+      - name: test media
+        if: steps.check.outputs.triggered == 'true'
+        run: date > media/test.txt
+
+      - name: commit media
+        working-directory: media
+        run: |
+          git add .
+          git commit -m 'update'
+          git push
 
       - name: checkout pr
         if: steps.check.outputs.triggered == 'true'
