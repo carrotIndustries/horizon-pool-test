@@ -17,12 +17,14 @@ jobs:
         env:
           GITHUB_TOKEN: '${{ secrets.GITHUB_TOKEN }}'
 
-      - name: setup SSH
+      - name: setup git
         if: steps.check.outputs.triggered == 'true'
         run: |
           mkdir ~/.ssh
           ssh-keyscan github.com >> ~/.ssh/known_hosts
           echo $SSH_PRIVKEY > ~/.ssh/id_rsa
+          git config --global user.email "poolbot@horizon-eda.org"
+          git config --global user.name "Horizon EDA Poolbot"
         env:
           SSH_PRIVKEY: ${{ secrets.secrets.SSH_PRIVKEY }}
 
