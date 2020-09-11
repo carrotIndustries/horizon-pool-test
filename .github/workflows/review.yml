@@ -40,16 +40,9 @@ jobs:
           repository: horizon-eda/poolbot-media
           ssh-key: ${{ secrets.SSH_PRIVKEY }}
           path: media
-
-      - name: test media
-        run: date > media/test.txt
-
-      - name: commit media
-        working-directory: media
-        run: |
-          git add .
-          git commit -m 'update'
-          git push
+          
+      - name: add create media dir
+        run: mkdir media/pr-${{ github.event.issue.number }}
 
       - name: checkout pr
         uses: actions/checkout@v2
@@ -64,10 +57,20 @@ jobs:
       - name: create review
         uses: docker://horizoneda/horizon-pr-review:latest
         with:
-          args: /github/workspace/pool -u -o /github/workspace/comment.md
+          args: >-
+            /github/workspace/pool -u -o /github/workspace/comment.md
+            -i /github/workspace/media/pr-${{ github.event.issue.number }}
+            -p https://raw.githubusercontent.com/horizon-eda/poolbot-media/master/pr-${{ github.event.issue.number }}/
 
       - name: print comment
         run: cat comment.md
+
+      - name: commit & push media
+        working-directory: media
+        run: |
+          git add .
+          git commit -m 'review pr ${{ github.event.issue.number }}'
+          git push
 
       - name: comment
         run: |
