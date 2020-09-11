@@ -20,6 +20,7 @@ jobs:
       - name: setup SSH
         if: steps.check.outputs.triggered == 'true'
         run: |
+          mkdir ~/.ssh
           ssh-keyscan github.com >> ~/.ssh/known_hosts
           echo $SSH_PRIVKEY > ~/.ssh/id_rsa
         env:
