@@ -20,7 +20,7 @@ jobs:
   review:
     runs-on: ubuntu-latest
     needs: check
-    if: steps.check.outputs.triggered == 'true'
+    if: needs.check.outputs.triggered == 'true'
     steps:
       - name: setup git
         run: |
