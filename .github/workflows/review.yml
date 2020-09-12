@@ -41,8 +41,8 @@ jobs:
           ssh-key: ${{ secrets.SSH_PRIVKEY }}
           path: media
           
-      - name: add create media dir
-        run: mkdir media/pr-${{ github.event.issue.number }}
+      - name: create media dir
+        run: mkdir -p media/pr-${{ github.event.issue.number }}
 
       - name: checkout pr
         uses: actions/checkout@v2
