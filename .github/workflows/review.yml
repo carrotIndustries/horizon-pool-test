@@ -10,7 +10,7 @@ jobs:
     outputs:
       triggered: ${{ steps.check.outputs.triggered }}
     steps:
-      - uses: khan/pull-request-comment-trigger@master
+      - uses: carrotIndustries/pull-request-comment-trigger@master
         id: check
         with:
           trigger: 'Bot!'
