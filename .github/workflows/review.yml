@@ -15,7 +15,7 @@ jobs:
         with:
           trigger: 'Bot!'
           reaction: rocket
-          prefix_only: true
+          prefix_only: 'true'
         env:
           GITHUB_TOKEN: '${{ secrets.GITHUB_TOKEN }}'
 
