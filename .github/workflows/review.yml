@@ -41,6 +41,11 @@ jobs:
           ssh-key: ${{ secrets.SSH_PRIVKEY }}
           path: media
 
+      - name: Dump GitHub context
+        env:
+          GITHUB_CONTEXT: ${{ toJson(github.event) }}
+        run: echo "$GITHUB_CONTEXT"
+
       - name: create media dir
         run: mkdir -p media/pr-${{ github.event.issue.number }}
 
