@@ -1,0 +1,30 @@
+{
+    "MPN": [
+        false,
+        "1N4148WS-2"
+    ],
+    "base": "b73aa387-1d93-40ff-a1c5-1a36a02161d8",
+    "datasheet": [
+        true,
+        "https://www.onsemi.com/pub/Collateral/1N914BWS-D.pdf"
+    ],
+    "description": [
+        true,
+        "Small Signal general Purpose Diode"
+    ],
+    "inherit_model": true,
+    "inherit_tags": true,
+    "manufacturer": [
+        true,
+        "ON Semiconductor"
+    ],
+    "model": "bdafba99-5da8-42b8-8beb-7235f01d7a53",
+    "parametric": {},
+    "tags": [],
+    "type": "part",
+    "uuid": "29d43a58-583c-45ab-8b0c-d91644852ee4",
+    "value": [
+        true,
+        "1N4148WS"
+    ]
+}
