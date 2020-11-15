@@ -1,6 +1,6 @@
 {
     "arcs": {},
-    "default_model": "582f1eac-90ab-47fe-ba69-7408907213d7",
+    "default_model": "00000000-0000-0000-0000-000000000000",
     "dimensions": {},
     "junctions": {
         "58d852a2-f5bf-46bf-b5b7-293944abed36": {
@@ -67,18 +67,8 @@
             "width": 150000
         }
     },
-    "manufacturer": "",
-    "models": {
-        "582f1eac-90ab-47fe-ba69-7408907213d7": {
-            "filename": "3d_models/ic/so/SOIC-8_3.9x4.9mm_P1.27mm.step",
-            "pitch": 0,
-            "roll": 0,
-            "x": 0,
-            "y": 0,
-            "yaw": 0,
-            "z": 0
-        }
-    },
+    "manufacturer": "ACME",
+    "models": {},
     "name": "SOIC-8",
     "pads": {
         "17341892-a120-44e2-97ea-6e4f8e3d7da5": {
