@@ -1,7 +1,7 @@
 {
     "MPN": [
         false,
-        "RCJ-2221"
+        "RCJ-2221 foo"
     ],
     "base": "0f4ad4a3-14c3-464a-b0ab-8c765dc10e2a",
     "datasheet": [
