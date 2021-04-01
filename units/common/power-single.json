@@ -1,6 +1,6 @@
 {
     "manufacturer": "",
-    "name": "Single power",
+    "name": "Single power 2",
     "pins": {
         "a8ba387d-1c68-4215-843f-9d669e48646d": {
             "direction": "power_input",
