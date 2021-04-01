@@ -52,7 +52,7 @@
             "width": 0
         }
     },
-    "name": "NE555",
+    "name": "NE555-2",
     "pins": {
         "0bb8388e-3bb2-46e9-af5d-57a8d86e0b1f": {
             "length": 2500000,
