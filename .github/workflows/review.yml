@@ -86,7 +86,7 @@ jobs:
           git push
 
       - name: replace old comments
-        run: |
+        run: |-
           IFS='/' read -r OWNER REPOSITORY <<< "${{github.repository}}"
           echo $OWNER $REPOSITORY
           read -r -d '' GET_COMMENTS_QUERY <<EOF
