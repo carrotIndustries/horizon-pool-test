@@ -85,7 +85,7 @@ jobs:
           git pull --rebase
           git push
 
-      - name: replace old comments
+      - name: minimize old comments
         run: |
           IFS='/' read -r OWNER REPOSITORY <<< "${{github.repository}}"
           echo $OWNER $REPOSITORY
