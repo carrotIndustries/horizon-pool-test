@@ -87,11 +87,11 @@ jobs:
 
       - name: replace old comments
         run: |
-          IFS='/' read -r OWNER REPOSITORY <<< "${{github.repository}}"
+          IFS='/' read -r OWNER REPO <<< "${{github.repository}}"
           echo $OWNER $REPOSITORY
           jq -R --slurp '{query: .}' << EOF |
           {
-            repository(name: "$OWNER", owner: "$REPOSITORY") {
+            repository(name: "$OWNER", owner: "$REPO") {
               pullRequest(number: ${{ github.event.issue.number }}) {
                 id
                 comments(last: 100) {
