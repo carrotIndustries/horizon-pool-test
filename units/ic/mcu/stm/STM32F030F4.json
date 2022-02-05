@@ -1,6 +1,6 @@
 {
     "manufacturer": "ST",
-    "name": "STM32F030F4",
+    "name": "STM32F030F4 asdf",
     "pins": {
         "0795f2bc-7938-42f0-b999-31187616d347": {
             "direction": "bidirectional",
