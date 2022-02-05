@@ -108,10 +108,10 @@ jobs:
           }
           EOF
           curl -H 'authorization: Bearer ${{ secrets.GITHUB_TOKEN }}' \
-          -X POST https://api.github.com/graphql -d @- | \
-          jq '.data.repository.pullRequest.comments.nodes[] | select(.author.login=="github-actions" and .isMinimized == false) | .id' | \
-          xargs -I xx curl -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN}}" -X POST  https://api.github.com/graphql \
-          -d "{\"query\":\"mutation { minimizeComment(input: {subjectId: \\"\"xx\\"\", classifier: OUTDATED}){clientMutationId}}\"}"
+          -X POST https://api.github.com/graphql -d @-
+#          jq '.data.repository.pullRequest.comments.nodes[] | select(.author.login=="github-actions" and .isMinimized == false) | .id' | \
+#          xargs -I xx curl -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN}}" -X POST  https://api.github.com/graphql \
+#          -d "{\"query\":\"mutation { minimizeComment(input: {subjectId: \\"\"xx\\"\", classifier: OUTDATED}){clientMutationId}}\"}"
 
       - name: comment
         run: |
