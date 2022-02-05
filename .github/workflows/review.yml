@@ -86,10 +86,14 @@ jobs:
           git push
 
       - name: replace old comments
-        run: |-
+        run: |
           IFS='/' read -r OWNER REPOSITORY <<< "${{github.repository}}"
           echo $OWNER $REPOSITORY
           read -r -d '' GET_COMMENTS_QUERY <<EOF
+          
+          EOF
+          echo $GET_COMMENTS_QUERY
+          jq -R --slurp '{query: .}' << EOF |
           {
             repository(name: "$OWNER", owner: "$REPOSITORY") {
               pullRequest(number: ${{ github.event.issue.number }}) {
@@ -107,8 +111,6 @@ jobs:
             }
           }
           EOF
-          echo $GET_COMMENTS_QUERY
-          jq -R --slurp '{query: .}' <<< "$GET_COMMENTS_QUERY" | \
           curl -H 'authorization: Bearer ${{ secrets.GITHUB_TOKEN }}' \
           -X POST -d @- | \
           jq '.data.repository.pullRequest.comments.nodes[] | select(.author.login=="github-actions" and .isMinimized == false) | .id' result.json | \
