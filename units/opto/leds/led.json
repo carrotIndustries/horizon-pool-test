@@ -1,5 +1,5 @@
 {
-    "name": "Two-terminal LED",
+    "name": "Two-terminal LEDz",
     "pins": {
         "3c305ca9-14d3-40b4-a365-8938959c043e": {
             "direction": "passive",
